@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Quiz Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="side-menu">
+        <h2>Menu</h2>
+        <nav>
+          <button class="menu-item active" data-target="home">Home</button>
+          <button class="menu-item" data-target="quizzes">Quizzes</button>
+          <button class="menu-item" data-target="progress">Progress</button>
+          <button class="menu-item" data-target="profile">Profile</button>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="site-header">
+          <h1>English Quiz Hub</h1>
+          <p>CEFR-graded quizzes from A1 to B2</p>
+        </header>
+
+        <section id="home" class="page active-page">
+          <h2>Featured Quizzes</h2>
+          <div class="carousel-wrapper">
+            <button id="carousel-left" class="carousel-button" aria-label="Scroll left">◀</button>
+            <div id="quiz-carousel" class="quiz-carousel"></div>
+            <button id="carousel-right" class="carousel-button" aria-label="Scroll right">▶</button>
+          </div>
+
+          <section id="quiz-player" class="quiz-player hidden" aria-live="polite">
+            <div class="quiz-meta">
+              <h3 id="quiz-title">Quiz Title</h3>
+              <span id="quiz-level" class="level-pill"></span>
+            </div>
+            <p id="question-text" class="question-text"></p>
+            <div id="option-list" class="option-list"></div>
+            <div id="feedback-box" class="feedback-box hidden">
+              <h4 id="result-text"></h4>
+              <p id="explanation-text"></p>
+              <button id="next-question" class="action-button">Next Question</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="quizzes" class="page">
+          <h2>Quizzes</h2>
+          <p>Choose a quiz from Home to start practicing.</p>
+        </section>
+
+        <section id="progress" class="page">
+          <h2>Progress</h2>
+          <p>Your score history and level progress will appear here.</p>
+        </section>
+
+        <section id="profile" class="page">
+          <h2>Profile</h2>
+          <p>Manage your profile details and learning preferences.</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
