@@ -80,7 +80,7 @@ const quizData = [
     description: "Advanced grammar choices in context.",
     questions: [
       {
-        prompt: "Complete the sentence: 'By the time we arrived, the film ___." ,
+        prompt: "Complete the sentence: 'By the time we arrived, the film ___.'",
         options: ["started", "has started", "had started", "was starting"],
         answer: 2,
         explanation:
@@ -91,18 +91,28 @@ const quizData = [
 ];
 
 const carousel = document.getElementById("quiz-carousel");
-const quizPlayer = document.getElementById("quiz-player");
 const quizTitle = document.getElementById("quiz-title");
 const quizLevel = document.getElementById("quiz-level");
+const questionCounter = document.getElementById("question-counter");
 const questionText = document.getElementById("question-text");
 const optionList = document.getElementById("option-list");
 const feedbackBox = document.getElementById("feedback-box");
 const resultText = document.getElementById("result-text");
 const explanationText = document.getElementById("explanation-text");
 const nextButton = document.getElementById("next-question");
+const backHomeButton = document.getElementById("back-home");
 
 let activeQuiz = null;
 let questionIndex = 0;
+
+function navigateTo(pageId) {
+  document.querySelectorAll(".page").forEach((page) => page.classList.remove("active-page"));
+  document.getElementById(pageId).classList.add("active-page");
+
+  document.querySelectorAll(".menu-item").forEach((item) => {
+    item.classList.toggle("active", item.dataset.target === pageId);
+  });
+}
 
 function renderCarousel() {
   carousel.innerHTML = "";
@@ -123,14 +133,17 @@ function renderCarousel() {
 function startQuiz(quizId) {
   activeQuiz = quizData.find((quiz) => quiz.id === quizId);
   questionIndex = 0;
-  quizPlayer.classList.remove("hidden");
+  navigateTo("quiz-play");
   showQuestion();
 }
 
 function showQuestion() {
+  if (!activeQuiz) return;
+
   const question = activeQuiz.questions[questionIndex];
   quizTitle.textContent = activeQuiz.title;
   quizLevel.textContent = activeQuiz.level;
+  questionCounter.textContent = `Question ${questionIndex + 1} of ${activeQuiz.questions.length}`;
   questionText.textContent = question.prompt;
   feedbackBox.className = "feedback-box hidden";
 
@@ -181,23 +194,21 @@ nextButton.addEventListener("click", () => {
   showQuestion();
 });
 
+backHomeButton.addEventListener("click", () => navigateTo("home"));
+
 document.querySelectorAll(".menu-item").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".menu-item").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-
     const targetId = button.dataset.target;
-    document.querySelectorAll(".page").forEach((page) => page.classList.remove("active-page"));
-    document.getElementById(targetId).classList.add("active-page");
+    navigateTo(targetId);
   });
 });
 
 document.getElementById("carousel-left").addEventListener("click", () => {
-  carousel.scrollBy({ left: -240, behavior: "smooth" });
+  carousel.scrollBy({ left: -260, behavior: "smooth" });
 });
 
 document.getElementById("carousel-right").addEventListener("click", () => {
-  carousel.scrollBy({ left: 240, behavior: "smooth" });
+  carousel.scrollBy({ left: 260, behavior: "smooth" });
 });
 
 renderCarousel();

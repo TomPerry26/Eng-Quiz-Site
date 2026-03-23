@@ -8,35 +8,55 @@
   </head>
   <body>
     <div class="app-layout">
-      <aside class="side-menu">
-        <h2>Menu</h2>
+      <aside class="side-menu" aria-label="Primary navigation">
+        <h2>Learn</h2>
         <nav>
-          <button class="menu-item active" data-target="home">Home</button>
-          <button class="menu-item" data-target="quizzes">Quizzes</button>
-          <button class="menu-item" data-target="progress">Progress</button>
-          <button class="menu-item" data-target="profile">Profile</button>
+          <button class="menu-item active" data-target="home" aria-label="Home">
+            <span class="menu-icon">🏠</span>
+            <span>Home</span>
+          </button>
+          <button class="menu-item" data-target="quizzes" aria-label="Quizzes">
+            <span class="menu-icon">🧠</span>
+            <span>Quizzes</span>
+          </button>
+          <button class="menu-item" data-target="progress" aria-label="Progress">
+            <span class="menu-icon">📈</span>
+            <span>Progress</span>
+          </button>
+          <button class="menu-item" data-target="profile" aria-label="Profile">
+            <span class="menu-icon">👤</span>
+            <span>Profile</span>
+          </button>
         </nav>
       </aside>
 
       <main class="main-content">
         <header class="site-header">
           <h1>English Quiz Hub</h1>
-          <p>CEFR-graded quizzes from A1 to B2</p>
+          <p>Fun CEFR-graded quizzes from A1 to B2.</p>
         </header>
 
         <section id="home" class="page active-page">
-          <h2>Featured Quizzes</h2>
+          <div class="home-intro">
+            <h2>Featured Quizzes</h2>
+            <p>Pick a card to open the full quiz player page.</p>
+          </div>
+
           <div class="carousel-wrapper">
             <button id="carousel-left" class="carousel-button" aria-label="Scroll left">◀</button>
             <div id="quiz-carousel" class="quiz-carousel"></div>
             <button id="carousel-right" class="carousel-button" aria-label="Scroll right">▶</button>
           </div>
+        </section>
 
-          <section id="quiz-player" class="quiz-player hidden" aria-live="polite">
+        <section id="quiz-play" class="page">
+          <button id="back-home" class="back-button">← Back to Home</button>
+          <section id="quiz-player" class="quiz-player" aria-live="polite">
             <div class="quiz-meta">
               <h3 id="quiz-title">Quiz Title</h3>
               <span id="quiz-level" class="level-pill"></span>
             </div>
+            <p id="question-counter" class="question-counter"></p>
             <p id="question-text" class="question-text"></p>
             <div id="option-list" class="option-list"></div>
             <div id="feedback-box" class="feedback-box hidden">
@@ -49,17 +69,17 @@
 
         <section id="quizzes" class="page">
           <h2>Quizzes</h2>
-          <p>Choose a quiz from Home to start practicing.</p>
+          <p>Explore by level: A1, A2, B1, and B2. Start from Home to play.</p>
         </section>
 
         <section id="progress" class="page">
           <h2>Progress</h2>
-          <p>Your score history and level progress will appear here.</p>
+          <p>Your streaks, completion stats, and weak-point grammar tracking will appear here.</p>
         </section>
 
         <section id="profile" class="page">
           <h2>Profile</h2>
-          <p>Manage your profile details and learning preferences.</p>
+          <p>Manage your goals, daily target, and preferred quiz difficulty.</p>
         </section>
       </main>
     </div>
